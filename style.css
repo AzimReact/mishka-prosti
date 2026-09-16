@@ -227,6 +227,29 @@ body[data-theme="space"] .space-field {
   padding: 36px 26px 32px;
 }
 
+/* ---------- screen 0: bear greeting ---------- */
+
+.bear-wrap {
+  width: 150px;
+  height: 150px;
+  margin: -70px auto 6px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: wiggle 3.2s ease-in-out infinite;
+}
+
+.bear-svg {
+  width: 150px;
+  height: 150px;
+  filter: drop-shadow(0 8px 14px rgba(180, 110, 90, 0.28));
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
 /* ---------- screen 1: space + cat ---------- */
 
 .space-content {
@@ -436,7 +459,7 @@ body[data-theme="space"] .space-field {
 
 @media (prefers-reduced-motion: reduce) {
   .blob, .floating-heart, .star, .cat-wrap,
-  .kiss-scene, .btn-yes { animation: none !important; }
+  .bear-wrap, .kiss-scene, .btn-yes { animation: none !important; }
   .screen, .btn-no, body { transition: none !important; }
 }
 

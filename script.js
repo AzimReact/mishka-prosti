@@ -1,10 +1,11 @@
 (() => {
   const screens = {
+    sorry: document.getElementById('screen-sorry'),
     question: document.getElementById('screen-question'),
     yes: document.getElementById('screen-yes'),
   };
 
-  const THEME_BY_SCREEN = { question: 'space', yes: 'pink' };
+  const THEME_BY_SCREEN = { sorry: 'pink', question: 'space', yes: 'pink' };
 
   function showScreen(name) {
     Object.values(screens).forEach((el) => el.classList.remove('is-active'));
@@ -12,11 +13,15 @@
     document.body.setAttribute('data-theme', THEME_BY_SCREEN[name]);
   }
 
-  showScreen('question');
+  showScreen('sorry');
+
+  document.getElementById('btn-to-question').addEventListener('click', () => {
+    showScreen('question');
+  });
 
   document.getElementById('btn-replay').addEventListener('click', () => {
     resetNoButton();
-    showScreen('question');
+    showScreen('sorry');
   });
 
   // Only accept a "Да" click if the press that started it actually began on
