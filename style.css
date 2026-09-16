@@ -46,6 +46,11 @@ body[data-theme="space"] .caption {
   color: rgba(255, 255, 255, 0.75);
 }
 
+body[data-theme="space"] .title {
+  color: #fff0f6;
+  text-shadow: 0 2px 12px rgba(255, 182, 220, 0.35);
+}
+
 h1, h2 {
   font-family: 'Caveat', cursive;
   font-weight: 700;
@@ -236,8 +241,8 @@ body[data-theme="space"] .space-field {
 }
 
 .cat-wrap {
-  width: 152px;
-  margin-top: 28px;
+  width: 122px;
+  margin-top: 20px;
   filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.45));
   animation: cat-bounce 2.6s ease-in-out infinite;
 }
@@ -281,6 +286,11 @@ body[data-theme="space"] .space-field {
 
 .title {
   font-size: 2.3rem;
+}
+
+.title--space {
+  font-size: 1.9rem;
+  margin: 0;
 }
 
 .text {
@@ -357,7 +367,7 @@ body[data-theme="space"] .space-field {
 .buttons-field {
   position: relative;
   width: 100%;
-  height: min(48vh, 360px);
+  height: min(36vh, 300px);
   isolation: isolate;
   display: flex;
   align-items: center;
