@@ -1,22 +1,22 @@
 (() => {
   const screens = {
-    sorry: document.getElementById('screen-sorry'),
     question: document.getElementById('screen-question'),
     yes: document.getElementById('screen-yes'),
   };
 
+  const THEME_BY_SCREEN = { question: 'space', yes: 'pink' };
+
   function showScreen(name) {
     Object.values(screens).forEach((el) => el.classList.remove('is-active'));
     screens[name].classList.add('is-active');
+    document.body.setAttribute('data-theme', THEME_BY_SCREEN[name]);
   }
 
-  document.getElementById('btn-to-question').addEventListener('click', () => {
-    showScreen('question');
-  });
+  showScreen('question');
 
   document.getElementById('btn-replay').addEventListener('click', () => {
     resetNoButton();
-    showScreen('sorry');
+    showScreen('question');
   });
 
   document.getElementById('btn-yes').addEventListener('click', () => {
@@ -30,6 +30,7 @@
   const heartGlyphs = ['❤', '💕', '💗', '🧸'];
 
   function spawnHeart() {
+    if (document.body.getAttribute('data-theme') === 'space') return;
     const el = document.createElement('span');
     el.className = 'floating-heart';
     el.textContent = heartGlyphs[Math.floor(Math.random() * heartGlyphs.length)];
@@ -46,7 +47,29 @@
   }
 
   setInterval(spawnHeart, 900);
-  for (let i = 0; i < 4; i++) setTimeout(spawnHeart, i * 400);
+
+  // ---------- falling stars (space screen) ----------
+
+  const spaceField = document.getElementById('space-field');
+
+  function initStars(count) {
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('span');
+      el.className = 'star';
+      const size = 1 + Math.random() * 2.4;
+      const duration = 6 + Math.random() * 10;
+      const drift = (Math.random() - 0.5) * 60;
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.width = size + 'px';
+      el.style.height = size + 'px';
+      el.style.animationDuration = duration + 's';
+      el.style.animationDelay = -Math.random() * duration + 's';
+      el.style.setProperty('--drift', drift + 'px');
+      spaceField.appendChild(el);
+    }
+  }
+
+  initStars(70);
 
   // ---------- "Нет" button runs away ----------
 

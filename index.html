@@ -16,25 +16,41 @@
 </head>
 <body>
 
-<!-- Переиспользуемый мишка -->
+<!-- Переиспользуемые иллюстрации -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="bear" viewBox="0 0 240 240">
-      <ellipse cx="120" cy="192" rx="72" ry="48" fill="#c98a5e"/>
-      <circle cx="52" cy="178" r="27" fill="#c98a5e"/>
-      <circle cx="188" cy="178" r="27" fill="#c98a5e"/>
+    <symbol id="bear-face" viewBox="0 0 240 220">
       <circle cx="70" cy="55" r="27" fill="#c98a5e"/>
       <circle cx="170" cy="55" r="27" fill="#c98a5e"/>
       <circle cx="70" cy="55" r="13" fill="#a8703f"/>
       <circle cx="170" cy="55" r="13" fill="#a8703f"/>
-      <circle cx="120" cy="102" r="70" fill="#dba374"/>
-      <ellipse cx="120" cy="120" rx="34" ry="25" fill="#f6e3cb"/>
-      <ellipse cx="80" cy="116" rx="12" ry="8" fill="#ffb6c1" opacity="0.75"/>
-      <ellipse cx="160" cy="116" rx="12" ry="8" fill="#ffb6c1" opacity="0.75"/>
-      <circle cx="98" cy="92" r="6" fill="#4a3226"/>
-      <circle cx="142" cy="92" r="6" fill="#4a3226"/>
-      <ellipse cx="120" cy="114" rx="8" ry="6" fill="#4a3226"/>
-      <path d="M120 166 C120 156 108 151 100 159 C92 167 100 179 120 194 C140 179 148 167 140 159 C132 151 120 156 120 166Z" fill="#ff5c7a"/>
+      <circle cx="120" cy="112" r="78" fill="#dba374"/>
+      <ellipse cx="120" cy="132" rx="36" ry="27" fill="#f6e3cb"/>
+      <ellipse cx="76" cy="127" rx="13" ry="9" fill="#ffb6c1" opacity="0.75"/>
+      <ellipse cx="164" cy="127" rx="13" ry="9" fill="#ffb6c1" opacity="0.75"/>
+      <path d="M88 102 Q98 94 108 102" stroke="#4a3226" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M132 102 Q142 94 152 102" stroke="#4a3226" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="120" cy="126" rx="9" ry="7" fill="#4a3226"/>
+    </symbol>
+    <symbol id="cat" viewBox="0 0 240 240">
+      <path d="M55 70 L35 15 L95 55 Z" fill="#e8a355"/>
+      <path d="M185 70 L205 15 L145 55 Z" fill="#e8a355"/>
+      <path d="M60 65 L48 30 L85 55 Z" fill="#ffb6c1" opacity="0.8"/>
+      <path d="M180 65 L192 30 L155 55 Z" fill="#ffb6c1" opacity="0.8"/>
+      <circle cx="120" cy="120" r="80" fill="#f0b878"/>
+      <ellipse cx="75" cy="135" rx="16" ry="10" fill="#ffb6c1" opacity="0.6"/>
+      <ellipse cx="165" cy="135" rx="16" ry="10" fill="#ffb6c1" opacity="0.6"/>
+      <path d="M85 108 Q98 96 111 108" stroke="#4a3226" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="150" cy="106" r="7" fill="#4a3226"/>
+      <circle cx="152" cy="103" r="2.4" fill="#fff"/>
+      <path d="M138 88 Q150 80 165 86" stroke="#4a3226" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M113 132 L127 132 L120 140 Z" fill="#e8607f"/>
+      <path d="M120 140 Q135 155 150 142" stroke="#4a3226" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M120 140 Q108 150 95 142" stroke="#4a3226" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7"/>
+      <line x1="30" y1="118" x2="75" y2="122" stroke="#4a3226" stroke-width="3" stroke-linecap="round"/>
+      <line x1="28" y1="132" x2="74" y2="132" stroke="#4a3226" stroke-width="3" stroke-linecap="round"/>
+      <line x1="210" y1="118" x2="165" y2="122" stroke="#4a3226" stroke-width="3" stroke-linecap="round"/>
+      <line x1="212" y1="132" x2="166" y2="132" stroke="#4a3226" stroke-width="3" stroke-linecap="round"/>
     </symbol>
   </defs>
 </svg>
@@ -45,32 +61,17 @@
   <span class="blob blob--3"></span>
 </div>
 <div id="hearts-field" class="hearts-field" aria-hidden="true"></div>
+<div id="space-field" class="space-field" aria-hidden="true"></div>
 <div id="confetti-field" class="confetti-field" aria-hidden="true"></div>
 
 <main class="app">
 
-  <!-- Экран 1: извинение -->
-  <section class="screen is-active" id="screen-sorry">
-    <div class="card">
-      <div class="bear-wrap bear-wrap--wave">
-        <svg class="bear-svg"><use href="#bear"/></svg>
+  <!-- Экран 1: игра Да / Нет -->
+  <section class="screen is-active" id="screen-question">
+    <div class="space-content">
+      <div class="cat-wrap">
+        <svg class="cat-svg"><use href="#cat"/></svg>
       </div>
-      <h1 class="title">Прости меня,<br>пожалуйста</h1>
-      <p class="text">Я знаю, что была не права,<br>и мне правда жаль 🥺<br>Дай мне шанс всё исправить?</p>
-      <button class="btn btn--primary" id="btn-to-question" type="button">
-        Читать дальше <span aria-hidden="true">→</span>
-      </button>
-    </div>
-  </section>
-
-  <!-- Экран 2: вопрос -->
-  <section class="screen" id="screen-question">
-    <div class="card">
-      <div class="bear-wrap bear-wrap--peek">
-        <svg class="bear-svg"><use href="#bear"/></svg>
-      </div>
-      <h2 class="title">Пойдёшь со мной<br>на свидание?</h2>
-      <p class="caption" id="dodge-caption">&nbsp;</p>
 
       <div class="buttons-field" id="buttons-field">
         <button class="btn-yes" id="btn-yes" type="button" aria-label="Да">
@@ -81,18 +82,25 @@
         </button>
         <button class="btn-no" id="btn-no" type="button">Нет</button>
       </div>
+
+      <p class="caption" id="dodge-caption">&nbsp;</p>
     </div>
   </section>
 
-  <!-- Экран 3: поздравление -->
+  <!-- Экран 2: приглашение -->
   <section class="screen" id="screen-yes">
     <div class="card">
-      <div class="bear-wrap bear-wrap--hug">
-        <svg class="bear-svg"><use href="#bear"/></svg>
+      <div class="kiss-scene">
+        <svg class="kiss-bear kiss-bear--girl"><use href="#bear-face"/></svg>
+        <svg class="kiss-bear kiss-bear--boy"><use href="#bear-face"/></svg>
+        <span class="kiss-heart" aria-hidden="true">💗</span>
       </div>
-      <h2 class="title">Ураааа! 🎉</h2>
-      <p class="text text--big">Тебе сказали «Да»! 💕<br>Свидание состоится</p>
-      <p class="text text--muted">Я так рада, до встречи 🐻🌸</p>
+      <p class="text text--message">
+        Ты мой сладкий пирожочек 💋<br>
+        Прости меня и я тебя прощаю 🌝<br>
+        Я приглашаю тебя на свидание.<br>
+        Если не согласишься, то ночью к тебе зайду и отрежу твой писюн )) 🤭
+      </p>
       <button class="btn btn--ghost" id="btn-replay" type="button">Начать заново</button>
     </div>
   </section>
