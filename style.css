@@ -236,15 +236,15 @@ body[data-theme="space"] .space-field {
 }
 
 .cat-wrap {
-  width: 170px;
-  height: 170px;
-  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.4));
+  width: 190px;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.45));
   animation: cat-bounce 2.6s ease-in-out infinite;
 }
 
-.cat-svg {
+.cat-img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 
 @keyframes cat-bounce {
@@ -255,64 +255,25 @@ body[data-theme="space"] .space-field {
 /* ---------- screen 2: kissing bears ---------- */
 
 .kiss-scene {
-  position: relative;
+  width: 178px;
+  margin: -86px auto 10px;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 14px 26px rgba(180, 110, 90, 0.35);
+  border: 4px solid #fff;
+  animation: bounce-soft 2.6s ease-in-out infinite;
+}
+
+.kiss-gif {
+  display: block;
   width: 100%;
-  height: 130px;
-  margin: -68px auto 8px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  height: auto;
 }
 
-.kiss-bear {
-  width: 116px;
-  height: 106px;
-  position: relative;
-  filter: drop-shadow(0 8px 14px rgba(180, 110, 90, 0.28));
-}
-
-.kiss-bear--girl {
-  margin-right: -24px;
-  z-index: 2;
-  transform-origin: 65% 70%;
-  animation: kiss-lean 2.4s ease-in-out infinite;
-}
-
-.kiss-bear--girl::before {
-  content: "🎀";
-  position: absolute;
-  top: -6px;
-  left: 6px;
-  font-size: 22px;
-  z-index: 3;
-}
-
-.kiss-bear--boy {
-  margin-left: -24px;
-  z-index: 1;
-  transform: scaleX(-1);
-}
-
-.kiss-heart {
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  font-size: 22px;
-  opacity: 0;
-  animation: kiss-pop 2.4s ease-in-out infinite;
-}
-
-@keyframes kiss-lean {
-  0%, 20% { transform: rotate(0deg) translateX(0); }
-  45%, 60% { transform: rotate(-12deg) translateX(12px); }
-  100% { transform: rotate(0deg) translateX(0); }
-}
-
-@keyframes kiss-pop {
-  0%, 35% { opacity: 0; transform: translate(-50%, 0) scale(0.4); }
-  50% { opacity: 1; transform: translate(-50%, -6px) scale(1.15); }
-  65% { opacity: 1; transform: translate(-50%, -14px) scale(1); }
-  85%, 100% { opacity: 0; transform: translate(-50%, -26px) scale(0.8); }
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 /* ---------- text ---------- */
@@ -456,15 +417,15 @@ body[data-theme="space"] .space-field {
   font-weight: 700;
   padding: 15px 30px;
   box-shadow: 0 6px 16px rgba(150, 100, 100, 0.18);
-  transition: left 0.35s cubic-bezier(.34,1.56,.64,1),
-              top 0.35s cubic-bezier(.34,1.56,.64,1),
-              transform 0.35s cubic-bezier(.34,1.56,.64,1);
+  transition: left 0.55s cubic-bezier(.22,.75,.32,1),
+              top 0.55s cubic-bezier(.22,.75,.32,1),
+              transform 0.45s cubic-bezier(.22,.75,.32,1);
   will-change: left, top, transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .blob, .floating-heart, .star, .cat-wrap,
-  .kiss-bear--girl, .kiss-heart, .btn-yes { animation: none !important; }
+  .kiss-scene, .btn-yes { animation: none !important; }
   .screen, .btn-no, body { transition: none !important; }
 }
 

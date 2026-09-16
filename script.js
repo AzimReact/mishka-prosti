@@ -74,6 +74,7 @@
   // ---------- "Нет" button runs away ----------
 
   const btnNo = document.getElementById('btn-no');
+  const btnYes = document.getElementById('btn-yes');
   const buttonsField = document.getElementById('buttons-field');
   const caption = document.getElementById('dodge-caption');
 
@@ -91,6 +92,8 @@
   let dodgeCount = 0;
   const MIN_SCALE = 0.42;
   const START_SCALE = 1;
+  const SAFE_DODGES = 6;
+  const SAFE_DISTANCE = 150;
 
   function resetNoButton() {
     dodgeCount = 0;
@@ -113,8 +116,32 @@
     const maxLeft = Math.max(0, fieldRect.width - w);
     const maxTop = Math.max(0, fieldRect.height - h);
 
-    const newLeft = Math.random() * maxLeft;
-    const newTop = Math.random() * maxTop;
+    let newLeft = Math.random() * maxLeft;
+    let newTop = Math.random() * maxTop;
+
+    if (dodgeCount <= SAFE_DODGES) {
+      const yesRect = btnYes.getBoundingClientRect();
+      const yesCenterX = yesRect.left - fieldRect.left + yesRect.width / 2;
+      const yesCenterY = yesRect.top - fieldRect.top + yesRect.height / 2;
+
+      let attempts = 0;
+      let candidateLeft = newLeft;
+      let candidateTop = newTop;
+      let farEnough = false;
+
+      while (attempts < 25 && !farEnough) {
+        candidateLeft = Math.random() * maxLeft;
+        candidateTop = Math.random() * maxTop;
+        const centerX = candidateLeft + w / 2;
+        const centerY = candidateTop + h / 2;
+        const dist = Math.hypot(centerX - yesCenterX, centerY - yesCenterY);
+        farEnough = dist >= SAFE_DISTANCE;
+        attempts++;
+      }
+
+      newLeft = candidateLeft;
+      newTop = candidateTop;
+    }
 
     if (btnNo.style.position !== 'absolute') {
       btnNo.style.position = 'absolute';
