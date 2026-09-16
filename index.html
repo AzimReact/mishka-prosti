@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#ffd6e8">
+<meta name="description" content="Пойдёшь со мной на свидание? 💌">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Пойдёшь со мной на свидание? 🐻💕</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Переиспользуемый мишка -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="bear" viewBox="0 0 240 240">
+      <ellipse cx="120" cy="192" rx="72" ry="48" fill="#c98a5e"/>
+      <circle cx="52" cy="178" r="27" fill="#c98a5e"/>
+      <circle cx="188" cy="178" r="27" fill="#c98a5e"/>
+      <circle cx="70" cy="55" r="27" fill="#c98a5e"/>
+      <circle cx="170" cy="55" r="27" fill="#c98a5e"/>
+      <circle cx="70" cy="55" r="13" fill="#a8703f"/>
+      <circle cx="170" cy="55" r="13" fill="#a8703f"/>
+      <circle cx="120" cy="102" r="70" fill="#dba374"/>
+      <ellipse cx="120" cy="120" rx="34" ry="25" fill="#f6e3cb"/>
+      <ellipse cx="80" cy="116" rx="12" ry="8" fill="#ffb6c1" opacity="0.75"/>
+      <ellipse cx="160" cy="116" rx="12" ry="8" fill="#ffb6c1" opacity="0.75"/>
+      <circle cx="98" cy="92" r="6" fill="#4a3226"/>
+      <circle cx="142" cy="92" r="6" fill="#4a3226"/>
+      <ellipse cx="120" cy="114" rx="8" ry="6" fill="#4a3226"/>
+      <path d="M120 166 C120 156 108 151 100 159 C92 167 100 179 120 194 C140 179 148 167 140 159 C132 151 120 156 120 166Z" fill="#ff5c7a"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="bg-decor" aria-hidden="true">
+  <span class="blob blob--1"></span>
+  <span class="blob blob--2"></span>
+  <span class="blob blob--3"></span>
+</div>
+<div id="hearts-field" class="hearts-field" aria-hidden="true"></div>
+<div id="confetti-field" class="confetti-field" aria-hidden="true"></div>
+
+<main class="app">
+
+  <!-- Экран 1: извинение -->
+  <section class="screen is-active" id="screen-sorry">
+    <div class="card">
+      <div class="bear-wrap bear-wrap--wave">
+        <svg class="bear-svg"><use href="#bear"/></svg>
+      </div>
+      <h1 class="title">Прости меня,<br>пожалуйста</h1>
+      <p class="text">Я знаю, что была не права,<br>и мне правда жаль 🥺<br>Дай мне шанс всё исправить?</p>
+      <button class="btn btn--primary" id="btn-to-question" type="button">
+        Читать дальше <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Экран 2: вопрос -->
+  <section class="screen" id="screen-question">
+    <div class="card">
+      <div class="bear-wrap bear-wrap--peek">
+        <svg class="bear-svg"><use href="#bear"/></svg>
+      </div>
+      <h2 class="title">Пойдёшь со мной<br>на свидание?</h2>
+      <p class="caption" id="dodge-caption">&nbsp;</p>
+
+      <div class="buttons-field" id="buttons-field">
+        <button class="btn-yes" id="btn-yes" type="button" aria-label="Да">
+          <svg viewBox="0 0 32 29" class="heart-icon" aria-hidden="true">
+            <path d="M16 29C16 29 0 19.5 0 9.5C0 4.25 4 0 9 0C12 0 14.5 1.5 16 4C17.5 1.5 20 0 23 0C28 0 32 4.25 32 9.5C32 19.5 16 29 16 29Z"/>
+          </svg>
+          <span>Да</span>
+        </button>
+        <button class="btn-no" id="btn-no" type="button">Нет</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Экран 3: поздравление -->
+  <section class="screen" id="screen-yes">
+    <div class="card">
+      <div class="bear-wrap bear-wrap--hug">
+        <svg class="bear-svg"><use href="#bear"/></svg>
+      </div>
+      <h2 class="title">Ураааа! 🎉</h2>
+      <p class="text text--big">Тебе сказали «Да»! 💕<br>Свидание состоится</p>
+      <p class="text text--muted">Я так рада, до встречи 🐻🌸</p>
+      <button class="btn btn--ghost" id="btn-replay" type="button">Начать заново</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
