@@ -19,7 +19,22 @@
     showScreen('question');
   });
 
-  document.getElementById('btn-yes').addEventListener('click', () => {
+  // Only accept a "Да" click if the press that started it actually began on
+  // this button — stops a ghost click landing here right after "Нет" jumps
+  // out from under the finger and this button's box ends up under it.
+  const btnYes = document.getElementById('btn-yes');
+  let yesArmed = false;
+
+  btnYes.addEventListener('pointerdown', () => {
+    yesArmed = true;
+  });
+
+  btnYes.addEventListener('click', (e) => {
+    if (!yesArmed) {
+      e.preventDefault();
+      return;
+    }
+    yesArmed = false;
     burstConfetti();
     setTimeout(() => showScreen('yes'), 250);
   });
@@ -74,7 +89,6 @@
   // ---------- "Нет" button runs away ----------
 
   const btnNo = document.getElementById('btn-no');
-  const btnYes = document.getElementById('btn-yes');
   const buttonsField = document.getElementById('buttons-field');
   const caption = document.getElementById('dodge-caption');
 
@@ -158,18 +172,15 @@
     caption.textContent = captions[Math.min(dodgeCount - 1, captions.length - 1)];
   }
 
+  // pointerdown alone covers both touch and mouse; a separate click handler
+  // would double-fire dodge() on a real mouse click (pointerdown + click both
+  // land on the button), making it jump twice per tap.
   btnNo.addEventListener('pointerdown', (e) => {
     e.preventDefault();
     dodge();
   });
 
   btnNo.addEventListener('mouseenter', dodge);
-
-  btnNo.addEventListener('click', (e) => {
-    // if somehow still caught, treat it as an extra dodge instead of "success"
-    e.preventDefault();
-    dodge();
-  });
 
   // gentle idle drift so it "бегает то вверх, то вниз" even without interaction
   setInterval(() => {

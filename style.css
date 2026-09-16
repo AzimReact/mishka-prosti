@@ -236,7 +236,8 @@ body[data-theme="space"] .space-field {
 }
 
 .cat-wrap {
-  width: 190px;
+  width: 152px;
+  margin-top: 28px;
   filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.45));
   animation: cat-bounce 2.6s ease-in-out infinite;
 }
